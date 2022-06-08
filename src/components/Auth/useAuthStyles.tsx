@@ -1,0 +1,109 @@
+import { makeStyles } from '@mui/styles'
+import { Theme } from '@mui/material'
+
+export const useAuthStyles = makeStyles((theme: Theme) => ({
+  boxContainer: {
+    [theme.breakpoints.down('sm')]: {
+      width: '100vw',
+      height: '100vh',
+    },
+    [theme.breakpoints.up('sm')]: { width: 425 },
+  },
+
+  titleTypo: {
+    fontWeight: 700,
+    fontSize: 26,
+  },
+  label: {
+    paddingLeft: 2,
+    letterSpacing: 2,
+    fontSize: 12,
+    marginBottom: 5,
+    '&#drivers-data': {
+      marginTop: 5,
+      fontWeight: 700,
+    },
+  },
+  regTitle: {
+    fontWeight: 700,
+    fontSize: 12,
+  },
+  regInfo: { fontWeight: 150 },
+  dialog: {
+    position: 'relative',
+  },
+  dialogContainer: {
+    flexDirection: 'column',
+    height: '100%',
+  },
+  dialogTitle: {
+    position: 'relative',
+    [theme.breakpoints.down('sm')]: {
+      height: '25%',
+    },
+    [theme.breakpoints.up('sm')]: {
+      height: 30,
+    },
+  },
+  divider: {
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 50,
+    },
+    marginTop: 12,
+    marginBottom: 20,
+  },
+  leftTextField: {
+    [theme.breakpoints.down('sm')]: { marginLeft: 0 },
+    [theme.breakpoints.up('sm')]: { marginLeft: '1%' },
+  },
+  recoverTitle: {
+    position: 'absolute',
+    left: 0,
+    bottom: -20,
+    width: '100%',
+    display: 'flex',
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'end',
+  },
+  flexCenter: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 30,
+  },
+  formControl: {
+    position: 'relative',
+    marginTop: -5,
+    '&#sign-in': {
+      display: 'flex',
+      alignItems: 'center',
+    },
+  },
+  errorMessege: {
+    height: 18,
+    '&#terms': {
+      marginTop: -10,
+    },
+  },
+  forgotPass: {
+    position: 'absolute',
+    right: 0,
+  },
+  mobileView: {
+    marginTop: 0,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 50,
+    },
+  },
+  rememberSpan: {
+    fontSize: 14,
+    fontFamily: 'Lato',
+    fontWeight: 40,
+    color: '#595353',
+    '&#process': {
+      fontSize: 16,
+      fontWeight: 550,
+    },
+  },
+}))
