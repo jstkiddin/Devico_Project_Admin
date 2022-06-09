@@ -7,6 +7,7 @@ import NavBar from './components/NavBar/NavBar'
 import { useAppDispatch, useAppSelector } from './hooks/redux.hook'
 import SignInPage from './pages/SignInPage'
 import UsersPage from './pages/UsersPage'
+import LicensesPage from './pages/LicensesPage'
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -34,6 +35,10 @@ const App: React.FC = () => {
 
       <Routes>
         <Route path="/" element={<Navigate to="/users" replace />} />
+        <Route
+          path="/licenses"
+          element={isAuth ? <LicensesPage /> : <Navigate to="/signin" replace />}
+        />
         <Route path="/users" element={isAuth ? <UsersPage /> : <Navigate to="/signin" replace />} />
         <Route path="/signin" element={isAuth ? <Navigate to="/" replace /> : <SignInPage />} />
         <Route path="*" element={<PageNotFound />} />

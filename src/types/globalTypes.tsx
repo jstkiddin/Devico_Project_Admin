@@ -60,3 +60,22 @@ export interface Data {
   details: string
   buttons: string
 }
+export interface LicenseData {
+  fullName: string
+  dateOfIssuing: string
+  licenseType: string
+  status: string
+  payedStatus: string
+  button: string
+}
+
+export interface LicenseCells {
+  id: keyof LicenseData
+  label: string
+  height?: number
+  minWidth?: number
+  maxWidth?: number
+  width?: string | number
+  align?: 'center' | 'right'
+  format?: (value: number) => string
+}
