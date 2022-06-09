@@ -4,10 +4,9 @@ import { sagaActions } from './saga-actions'
 import { uiActions } from '../store/ui-slice'
 import api from '../hooks'
 
-const { setUser, setAvatar, toggleAuth, removeUser, unToggleAuth, toggleEmailSend } =
-  userSliceActions
+const { setUser, toggleAuth, removeUser, unToggleAuth, toggleEmailSend } = userSliceActions
 
-const { toggleLog, toggleReg, toggleCongratAuth, toggleCreateNewPassword } = uiActions
+const { toggleReg, toggleCongratAuth, toggleCreateNewPassword } = uiActions
 
 export function* userSignUpSaga(action: Effect) {
   try {
@@ -29,14 +28,9 @@ export function* userLoginSaga(action: Effect) {
     const data = yield call(api.post, '/auth/login', { email, password, userRole })
     const { accessToken, id } = data.data
     yield put(setUser({ id, email }))
-    yield put(toggleLog())
     yield put(toggleCongratAuth())
     yield put(toggleAuth())
     localStorage.setItem('token', accessToken)
-    const avatar = yield call(async () => {
-      return await api.get('/getAvatar')
-    })
-    yield put(setAvatar({ avatar: avatar.data.imageUrl }))
   } catch (error) {
     console.log(error)
   }
@@ -80,7 +74,6 @@ export function* userNewPassSaga(action: Effect) {
     const { password, token, id } = action.payload
     yield call(api.post, '/createNewPassword', { password, token, id })
     yield put(toggleCreateNewPassword())
-    yield put(toggleLog())
   } catch (error) {
     console.log(error)
   }
@@ -98,15 +91,6 @@ export function* updateUserDataSaga(action: Effect) {
   }
 }
 
-export function* userGetAvatarSaga(action: Effect) {
-  try {
-    const data = yield call(api.get, '/getAvatar')
-    yield put(setAvatar({ avatar: data.data.imageUrl }))
-  } catch (error) {
-    console.log(error)
-  }
-}
-
 export default function* rootSaga() {
   yield takeEvery(sagaActions.USER_SIGNUP_SAGA, userSignUpSaga)
   yield takeEvery(sagaActions.USER_LOGIN_SAGA, userLoginSaga)
@@ -115,5 +99,4 @@ export default function* rootSaga() {
   yield takeEvery(sagaActions.USER_NEWPASS_SAGA, userNewPassSaga)
   yield takeEvery(sagaActions.USER_RESET_SAGA, userResetPassSaga)
   yield takeEvery(sagaActions.USER_UPDATE_DATA_SAGA, updateUserDataSaga)
-  yield takeEvery(sagaActions.USER_GET_AVATAR_SAGA, userGetAvatarSaga)
 }

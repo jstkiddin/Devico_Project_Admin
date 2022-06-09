@@ -15,7 +15,6 @@ const columns: LicenseCells[] = [
     height: height,
     minWidth: 5,
     maxWidth: 20,
-    align: 'center',
   },
   {
     id: 'dateOfIssuing',
@@ -67,15 +66,15 @@ const createData = (
 }
 
 const rows = [
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', '', 'Paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', '', 'No paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', '', 'Paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', '', 'No paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', '', 'Paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', '', 'No paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', '', 'Paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', '', 'No paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', '', 'Paid', ''),
+  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested', 'Paid', ''),
+  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested-modifications', 'No paid', ''),
+  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Declined', 'Paid', ''),
+  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested', 'No paid', ''),
+  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested-modifications', 'Paid', ''),
+  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Declined', 'No paid', ''),
+  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested', 'Paid', ''),
+  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested-modifications', 'No paid', ''),
+  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Declined', 'Paid', ''),
 ]
 
 const rowsEmpty = rows => {

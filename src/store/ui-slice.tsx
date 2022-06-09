@@ -2,8 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 interface SliceState {
   showReg: boolean
-  showLog: boolean
-  showForgetPassword: boolean
   showCreateNewPassword: boolean
   congratAuth: boolean
   showSetPaidStatus: boolean
@@ -14,8 +12,6 @@ interface SliceState {
 
 const initialState: SliceState = {
   showReg: false,
-  showLog: false,
-  showForgetPassword: false,
   showCreateNewPassword: true,
   congratAuth: false,
   showSetPaidStatus: false,
@@ -30,12 +26,6 @@ const uiSlice = createSlice({
   reducers: {
     toggleReg(state) {
       state.showReg = !state.showReg
-    },
-    toggleLog(state) {
-      state.showLog = !state.showLog
-    },
-    toggleForgetPassword(state) {
-      state.showForgetPassword = !state.showForgetPassword
     },
     toggleCreateNewPassword(state) {
       state.showCreateNewPassword = !state.showCreateNewPassword

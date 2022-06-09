@@ -22,6 +22,7 @@ const EventsHeaders: React.FC<Props> = ({ columns }) => {
               maxWidth: column.maxWidth,
               width: column.width,
               fontSize: 'calc(4px + 0.8vw)',
+              textAlign: 'center',
             }}
           >
             {column.label}

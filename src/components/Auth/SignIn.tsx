@@ -1,11 +1,8 @@
 import { memo, useCallback, useState } from 'react'
 import { useFormik } from 'formik'
-import { uiActions } from '../../store/ui-slice'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux.hook'
+import { useAppDispatch } from '../../hooks/redux.hook'
 import {
   TextField,
-  FormControlLabel,
-  Checkbox,
   Grid,
   Typography,
   OutlinedInput,
@@ -14,7 +11,7 @@ import {
   Box,
   Divider,
 } from '@mui/material'
-import { MyTypography, RegisterButton, SignLink, styledDiv, SignInBox } from './AuthStyles'
+import { MyTypography, RegisterButton, styledDiv, SignInBox } from './AuthStyles'
 import { useAuthStyles } from './useAuthStyles'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { signInData } from './formikAuth'
@@ -40,14 +37,6 @@ const SignIn = () => {
     validationSchema: signInData.validationSchema,
     onSubmit,
   })
-  const logCartIsShown = useAppSelector<boolean>(state => state.ui.showLog)
-
-  const showRecoverPasHandler = useCallback(() => {
-    if (logCartIsShown) {
-      dispatch(uiActions.toggleLog())
-    }
-    dispatch(uiActions.toggleForgetPassword())
-  }, [dispatch, logCartIsShown])
 
   const handleClickShowPassword = useCallback(() => {
     return setShowPassword(!showPassword)
@@ -126,29 +115,6 @@ const SignIn = () => {
             {formik.errors.googleAuthCode && formik.touched.googleAuthCode ? (
               <div style={styledDiv}>{formik.errors.googleAuthCode}</div>
             ) : null}
-          </div>
-        </Grid>
-
-        <Grid item xs={12} sm={6}>
-          <div className={classes.formControl} id="sign-in">
-            <FormControlLabel
-              control={
-                <Checkbox
-                  name="rememberMe"
-                  value={formik.values.rememberMe}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              }
-              label={
-                <Typography variant="body2">
-                  <span className={classes.rememberSpan}>Remember me</span>
-                </Typography>
-              }
-            />
-            <SignLink className={classes.forgotPass} onClick={showRecoverPasHandler}>
-              Forgot password?
-            </SignLink>
           </div>
         </Grid>
         <RegisterButton type="submit" fullWidth variant="contained">

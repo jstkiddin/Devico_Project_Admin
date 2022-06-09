@@ -1,5 +1,5 @@
 import { MoreVert } from '@mui/icons-material'
-import { IconButton, TableBody, TableCell, TableRow } from '@mui/material'
+import { TableBody, TableCell, TableRow } from '@mui/material'
 import clsx from 'clsx'
 import { memo } from 'react'
 import { LicenseCells, LicenseData } from '../../../types/globalTypes'
@@ -24,6 +24,7 @@ const TableContent: React.FC<Props> = ({ columns, rows, page, rowsPerPage }) => 
             <TableCell
               style={{
                 fontSize: 'calc(4px + 0.8vw)',
+                textAlign: 'start',
               }}
             >
               {row.fullName}
@@ -31,6 +32,7 @@ const TableContent: React.FC<Props> = ({ columns, rows, page, rowsPerPage }) => 
             <TableCell
               style={{
                 fontSize: 'calc(4px + 0.8vw)',
+                textAlign: 'center',
               }}
             >
               {row.dateOfIssuing}
@@ -38,6 +40,7 @@ const TableContent: React.FC<Props> = ({ columns, rows, page, rowsPerPage }) => 
             <TableCell
               style={{
                 fontSize: 'calc(4px + 0.8vw)',
+                textAlign: 'center',
               }}
             >
               {row.licenseType}
@@ -45,26 +48,32 @@ const TableContent: React.FC<Props> = ({ columns, rows, page, rowsPerPage }) => 
             <TableCell
               style={{
                 fontSize: 'calc(4px + 0.8vw)',
+                textAlign: 'center',
               }}
             >
-              {row.status}
+              <div id={row.status} className={clsx(classes.status, classes.flexCenter)}>
+                {row.status}
+              </div>
             </TableCell>
             <TableCell
               style={{
                 fontSize: 'calc(4px + 0.8vw)',
               }}
             >
-              <div
-                id={row.payedStatus == 'Paid' ? 'paid' : 'no-paid'}
-                className={clsx(classes.payedStatus, classes.flexCenter)}
-              >
-                {row.payedStatus}
+              <div className={classes.flexCenter}>
+                <div
+                  id={row.payedStatus === 'Paid' ? 'paid' : 'no-paid'}
+                  className={clsx(classes.payedStatus, classes.flexCenter)}
+                >
+                  {row.payedStatus}
+                </div>
               </div>
             </TableCell>
             <TableCell
               style={{
                 fontSize: 'calc(4px + 0.8vw)',
                 position: 'relative',
+                textAlign: 'center',
               }}
             >
               <UserBarButtons
