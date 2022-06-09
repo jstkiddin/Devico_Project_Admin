@@ -6,8 +6,8 @@ interface SliceState {
   showForgetPassword: boolean
   showCreateNewPassword: boolean
   congratAuth: boolean
-  showAddCar: boolean
-  showEventReg: boolean
+  showSetPaidStatus: boolean
+  showSetUserStatus: boolean
   showCancelParticipation: boolean
   showFormSubmited: boolean
 }
@@ -18,8 +18,8 @@ const initialState: SliceState = {
   showForgetPassword: false,
   showCreateNewPassword: true,
   congratAuth: false,
-  showAddCar: false,
-  showEventReg: false,
+  showSetPaidStatus: false,
+  showSetUserStatus: false,
   showCancelParticipation: false,
   showFormSubmited: false,
 }
@@ -43,11 +43,11 @@ const uiSlice = createSlice({
     toggleCongratAuth(state) {
       state.congratAuth = !state.congratAuth
     },
-    toggleShowAddCar(state) {
-      state.showAddCar = !state.showAddCar
+    toggleShowSetPaidStatus(state) {
+      state.showSetPaidStatus = !state.showSetPaidStatus
     },
-    toggleShowEventReg(state) {
-      state.showEventReg = !state.showEventReg
+    toggleShowSetUserStatus(state) {
+      state.showSetUserStatus = !state.showSetUserStatus
     },
     toggleShowFormSubmited(state) {
       state.showFormSubmited = !state.showFormSubmited

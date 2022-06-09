@@ -1,6 +1,11 @@
 import { useState, useCallback, memo, useRef } from 'react'
-import { Button } from '@mui/material'
+import { Button, IconButton } from '@mui/material'
 import DropDownMenu from './dropDown'
+
+enum button {
+  icon = 'icon',
+  regular = 'reg',
+}
 
 type Props = {
   children: React.ReactElement[]
@@ -8,6 +13,7 @@ type Props = {
   buttonClass?: string
   popperClassName?: string
   popperPosition?: boolean
+  buttonType?: string
 }
 
 const UserBarButtons: React.FC<Props> = props => {
@@ -24,9 +30,14 @@ const UserBarButtons: React.FC<Props> = props => {
 
   return (
     <div>
-      <Button aria-controls="menu" className={props.buttonClass} onClick={handleOpen}>
-        {props.children[0]}
-      </Button>
+      {props.buttonType === button.icon ? (
+        <IconButton onClick={handleOpen}>{props.children[0]}</IconButton>
+      ) : (
+        <Button aria-controls="menu" className={props.buttonClass} onClick={handleOpen}>
+          {props.children[0]}
+        </Button>
+      )}
+
       <DropDownMenu
         isOpen={isOpen}
         anchorRef={anchorRef}

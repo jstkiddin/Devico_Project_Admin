@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from './hooks/redux.hook'
 import SignInPage from './pages/SignInPage'
 import UsersPage from './pages/UsersPage'
 import LicensesPage from './pages/LicensesPage'
+import LicenseModals from './components/Licenses/SetStatusModals/index'
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -43,6 +44,7 @@ const App: React.FC = () => {
         <Route path="/signin" element={isAuth ? <Navigate to="/" replace /> : <SignInPage />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <LicenseModals />
     </Router>
   )
 }

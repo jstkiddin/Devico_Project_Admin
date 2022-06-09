@@ -61,6 +61,16 @@ export const SignLink = styled(Link)({
   cursor: 'pointer',
 })
 
+export const OutlinedRegButton = styled(Button)({
+  height: '48px',
+  marginTop: 3,
+  marginBottom: 5,
+  fontFamily: 'Roboto',
+  fontWeight: 700,
+  fontSize: 12,
+  width: '35%',
+})
+
 export const RegisterButton = styled(Button)({
   marginTop: 3,
   marginBottom: 5,
@@ -68,6 +78,7 @@ export const RegisterButton = styled(Button)({
   height: '48px',
   fontFamily: 'Roboto',
   fontWeight: 700,
+  width: '35%',
   fontSize: 12,
   '&#recover': {
     marginTop: 20,

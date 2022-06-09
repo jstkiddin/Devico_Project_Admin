@@ -88,6 +88,40 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'space-around',
   },
+
+  modalButtons: {
+    marginTop: 20,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  box: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  container: {
+    width: '80%',
+  },
+  text: {
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  textBlock: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  title: {
+    marginTop: -10,
+    marginBottom: 10,
+    fontWeight: 900,
+    fontSize: 30,
+  },
+  icon: {
+    fontSize: 60,
+  },
 }))
 
 export const ProfileSubmitButton = styled(Button)({
