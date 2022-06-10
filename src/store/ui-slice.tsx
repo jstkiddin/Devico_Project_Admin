@@ -6,8 +6,6 @@ interface SliceState {
   congratAuth: boolean
   showSetPaidStatus: boolean
   showSetUserStatus: boolean
-  showCancelParticipation: boolean
-  showFormSubmited: boolean
 }
 
 const initialState: SliceState = {
@@ -16,8 +14,6 @@ const initialState: SliceState = {
   congratAuth: false,
   showSetPaidStatus: false,
   showSetUserStatus: false,
-  showCancelParticipation: false,
-  showFormSubmited: false,
 }
 
 const uiSlice = createSlice({
@@ -38,12 +34,6 @@ const uiSlice = createSlice({
     },
     toggleShowSetUserStatus(state) {
       state.showSetUserStatus = !state.showSetUserStatus
-    },
-    toggleShowFormSubmited(state) {
-      state.showFormSubmited = !state.showFormSubmited
-    },
-    toggleShowCancelParticipation(state) {
-      state.showCancelParticipation = !state.showCancelParticipation
     },
   },
 })

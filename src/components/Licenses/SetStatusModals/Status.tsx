@@ -42,7 +42,7 @@ const Status: React.FC = () => {
             <div className={licenseClasses.icon}>
               <Info fontSize="inherit" />
             </div>
-            <div className={licenseClasses.title}>Set Payed Status</div>
+            <div className={licenseClasses.title}>Set Attendee Status</div>
             <div className={licenseClasses.text}>
               This will set a new status for this attendee and may trigger new actions based on your
               selection

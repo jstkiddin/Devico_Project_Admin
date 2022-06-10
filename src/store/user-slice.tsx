@@ -5,6 +5,22 @@ interface SliceState {
   email?: string
   id?: string
   isEmailSend: boolean
+  licenses: ILicenses[]
+}
+
+interface ILicenses {
+  fullNameUK: string
+  fullNameLat: string
+  birthday: string
+  nativeCity: string
+  address: string
+  identificationNum: string
+  email: string
+  phone: string
+  status: string
+  paidSatus: string
+  licenseType: string
+  user_id: number
 }
 
 const initialState: SliceState = {
@@ -12,6 +28,7 @@ const initialState: SliceState = {
   email: '',
   id: '',
   isEmailSend: false,
+  licenses: [],
 }
 
 const userSlice = createSlice({
