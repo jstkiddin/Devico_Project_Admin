@@ -61,6 +61,7 @@ export interface Data {
   buttons: string
 }
 export interface LicenseData {
+  id: string
   fullName: string
   dateOfIssuing: string
   licenseType: string
@@ -78,4 +79,21 @@ export interface LicenseCells {
   width?: string | number
   align?: 'center' | 'right'
   format?: (value: number) => string
+}
+
+export interface ILicenses {
+  id: string
+  fullNameUK: string
+  fullNameLat: string
+  birthday: string
+  nativeCity: string
+  address: string
+  identificationNum: string
+  email: string
+  phone: string
+  status: string
+  paidStatus: string
+  license: string
+  user_id: number
+  createdAt: string
 }

@@ -13,9 +13,7 @@ interface Props {
   today: Moment
 }
 
-const setDaysArray = (day: Moment) => {
-  return [...Array(42)].map(() => day.add(1, 'day').clone())
-}
+const setDaysArray = (day: Moment) => [...Array(42)].map(() => day.add(1, 'day').clone())
 
 const filterEvents = (result, events: EventData, day: string) => {
   result = events.filter(event => event.date === day)

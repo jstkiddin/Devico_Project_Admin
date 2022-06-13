@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: '#6A6968',
       border: '2px solid #6A6968',
     },
-    '&#Requested-modifications': {
+    '&#Requested-modification': {
       backgroundColor: 'rgba(255, 130, 0, 0.1)',
       color: '#FF8200',
       border: '2px solid #FF8200',

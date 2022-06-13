@@ -3,7 +3,7 @@ import { Table, TableContainer, Paper, TablePagination } from '@mui/material'
 import EventsHeaders from './TableEventsHeaders'
 import TableContent from './TableContent'
 import { useAppSelector } from '../../../hooks/redux.hook'
-import { EventData, LicenseCells, LicenseData } from '../../../types/globalTypes'
+import { ILicenses, LicenseCells, LicenseData } from '../../../types/globalTypes'
 import moment from 'moment'
 
 const height = 21
@@ -55,6 +55,7 @@ const columns: LicenseCells[] = [
 ]
 
 const createData = (
+  id,
   fullName,
   dateOfIssuing,
   licenseType,
@@ -62,27 +63,15 @@ const createData = (
   payedStatus,
   button,
 ): LicenseData => {
-  return { fullName, dateOfIssuing, licenseType, status, payedStatus, button }
+  return { id, fullName, dateOfIssuing, licenseType, status, payedStatus, button }
 }
 
-const rows = [
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested', 'Paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested-modifications', 'No paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Declined', 'Paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested', 'No paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested-modifications', 'Paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Declined', 'No paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested', 'Paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Requested-modifications', 'No paid', ''),
-  createData('Dmitry Novik', '15.12.2021', 'D1 2000 UAH', 'Declined', 'Paid', ''),
-]
-
-const rowsEmpty = rows => {
-  const pageCount = Math.floor(rows.length / 6)
-  const empty = 6 * (pageCount + 1) - rows.length
-  if (rows.length > 6 * pageCount && rows.length < 6 * (pageCount + 1)) {
+const rowsEmpty = (rows, rowsPerPage) => {
+  const pageCount = Math.floor(rows.length / rowsPerPage)
+  const empty = rowsPerPage * (pageCount + 1) - rows.length
+  if (rows.length > rowsPerPage * pageCount && rows.length < rowsPerPage * (pageCount + 1)) {
     for (let i = 0; i < empty; i++) {
-      rows.push(createData('', ' ', '  ', '  ', '  ', ''))
+      rows.push(createData('', '', '', '', '', '', ''))
     }
   }
 
@@ -93,19 +82,24 @@ const LicenseTable: React.FC = () => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
 
-  const events = useAppSelector<EventData>(state => state.event.events)
+  const licenses = useAppSelector<ILicenses[]>(state => state.license.licenses)
 
-  // const rows = rowsEmpty(
-  //   events.map(event =>
-  //     createData(
-  //       moment(event.date).format('DD.MM').toString(),
-  //       event.discipline,
-  //       event.series,
-  //       event.title,
-  //       event.place,
-  //     ),
-  //   ),
-  // )
+  const rows = rowsEmpty(
+    licenses.map(license =>
+      createData(
+        license.id,
+        license.fullNameLat,
+        moment(license.createdAt).format('DD-MM-YYYY'),
+        license.license,
+        license.status,
+        license.paidStatus,
+        '',
+      ),
+    ),
+    rowsPerPage,
+  )
+
+  console.log(rows)
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
@@ -115,13 +109,6 @@ const LicenseTable: React.FC = () => {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
   }
-
-  const pageCount = useCallback(() => {
-    if (rows.length % rowsPerPage !== 0) {
-      return Math.floor(1 + rows.length / 6)
-    }
-    return Math.floor(rows.length / 6)
-  }, [rows])
 
   return (
     <Paper sx={{ width: '100%' }}>

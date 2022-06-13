@@ -3,30 +3,34 @@ import { Box, FormControl, Grid, MenuItem } from '@mui/material'
 import clsx from 'clsx'
 import { memo, useCallback, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux.hook'
+import { licenseActions } from '../../../store/saga-actions'
 import { uiActions } from '../../../store/ui-slice'
+import { ILicenses } from '../../../types/globalTypes'
 import { OutlinedRegButton, RegisterButton } from '../../Auth/AuthStyles'
 import { useAuthStyles } from '../../Auth/useAuthStyles'
 import ModalContainer from '../../Modal/ModalContainer'
 import useStyles, { StyledSelectField } from '../LicenseStyles'
 
 const PaidStatus: React.FC = () => {
-  const [status, setStatus] = useState<string>('Paid')
+  const licenseId = useAppSelector<string>(state => state.license.licenseId)
+  const licenseList = useAppSelector<ILicenses[]>(state => state.license.licenses)
+  const license = licenseList.filter(license => license.id === licenseId)
+
+  const [status, setStatus] = useState<string>(license[0]?.paidStatus)
   const dispatch = useAppDispatch()
   const classes = useAuthStyles()
   const licenseClasses = useStyles()
 
   const showStatusModal = useAppSelector<boolean>(state => state.ui.showSetPaidStatus)
 
-  const handleStatusChange = useCallback(
-    e => {
-      setStatus(e.target.value as string)
-    },
-    [status],
-  )
+  const handleStatusChange = useCallback(e => {
+    setStatus(e.target.value as string)
+  }, [])
 
   const handleSubmit = useCallback(() => {
-    // dispatch()
-  }, [])
+    dispatch({ type: licenseActions.LICENSE_CHAGE_PAID_STATUS, payload: { licenseId, status } })
+  }, [dispatch, licenseId, status])
+
   const handleCancel = useCallback(() => {
     dispatch(uiActions.toggleShowSetPaidStatus())
   }, [dispatch])

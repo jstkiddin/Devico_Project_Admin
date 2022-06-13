@@ -1,7 +1,7 @@
 import { memo, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import PageNotFound from './pages/404'
-import { sagaActions, eventActions } from './store/saga-actions'
+import { sagaActions, eventActions, licenseActions } from './store/saga-actions'
 import SideBar from './components/Sidebar/SideBar'
 import NavBar from './components/NavBar/NavBar'
 import { useAppDispatch, useAppSelector } from './hooks/redux.hook'
@@ -22,6 +22,7 @@ const App: React.FC = () => {
     dispatch({ type: eventActions.EVENT_GET_SAGA })
     dispatch({ type: sagaActions.USER_GET_DATA_SAGA })
     dispatch({ type: sagaActions.USER_EVENTS_DATA_SAGA })
+    dispatch({ type: licenseActions.USER_GET_LICENSES })
   }, [])
 
   return (

@@ -14,6 +14,16 @@ interface Props {
   rowsPerPage: number
 }
 
+enum PaidStatus {
+  paid = 'paid',
+  paidID = 'Paid',
+  noPaid = 'no-paid',
+}
+enum LicenseStatus {
+  requestedModifications = 'Requested modification',
+  reqModifID = 'Requested-modification',
+}
+
 const TableContent: React.FC<Props> = ({ columns, rows, page, rowsPerPage }) => {
   const classes = useStyles()
   return (
@@ -51,7 +61,14 @@ const TableContent: React.FC<Props> = ({ columns, rows, page, rowsPerPage }) => 
                 textAlign: 'center',
               }}
             >
-              <div id={row.status} className={clsx(classes.status, classes.flexCenter)}>
+              <div
+                id={
+                  row.status === LicenseStatus.requestedModifications
+                    ? LicenseStatus.reqModifID
+                    : row.status
+                }
+                className={clsx(classes.status, classes.flexCenter)}
+              >
                 {row.status}
               </div>
             </TableCell>
@@ -62,7 +79,13 @@ const TableContent: React.FC<Props> = ({ columns, rows, page, rowsPerPage }) => 
             >
               <div className={classes.flexCenter}>
                 <div
-                  id={row.payedStatus === 'Paid' ? 'paid' : 'no-paid'}
+                  id={
+                    row.payedStatus.length > 0
+                      ? row.payedStatus === PaidStatus.paidID
+                        ? PaidStatus.paid
+                        : PaidStatus.noPaid
+                      : ''
+                  }
                   className={clsx(classes.payedStatus, classes.flexCenter)}
                 >
                   {row.payedStatus}
@@ -81,10 +104,10 @@ const TableContent: React.FC<Props> = ({ columns, rows, page, rowsPerPage }) => 
                 popperClassName={classes.popper}
                 buttonClass={clsx(classes.tableButton, classes.userBarInner, classes.flexCenter)}
                 buttonType="icon"
-                popperPosition={true}
+                popperPosition
               >
                 <MoreVert />
-                <MoreDropdown />
+                <MoreDropdown licenseId={row.id} />
               </UserBarButtons>
             </TableCell>
           </TableRow>

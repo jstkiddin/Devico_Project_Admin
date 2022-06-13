@@ -5,7 +5,7 @@ interface SliceState {
   showCreateNewPassword: boolean
   congratAuth: boolean
   showSetPaidStatus: boolean
-  showSetUserStatus: boolean
+  showSetLicenseStatus: boolean
 }
 
 const initialState: SliceState = {
@@ -13,7 +13,7 @@ const initialState: SliceState = {
   showCreateNewPassword: true,
   congratAuth: false,
   showSetPaidStatus: false,
-  showSetUserStatus: false,
+  showSetLicenseStatus: false,
 }
 
 const uiSlice = createSlice({
@@ -32,8 +32,8 @@ const uiSlice = createSlice({
     toggleShowSetPaidStatus(state) {
       state.showSetPaidStatus = !state.showSetPaidStatus
     },
-    toggleShowSetUserStatus(state) {
-      state.showSetUserStatus = !state.showSetUserStatus
+    toggleShowSetLicenseStatus(state) {
+      state.showSetLicenseStatus = !state.showSetLicenseStatus
     },
   },
 })
