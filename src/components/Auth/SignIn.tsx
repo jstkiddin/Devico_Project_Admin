@@ -26,10 +26,10 @@ const SignIn = () => {
   const onSubmit = useCallback(
     async (values: object, { resetForm }) => {
       dispatch({ type: signInData.onSubmitType, payload: { ...values, userRole: 'admin' } })
+      setTimeout(() => navigate('/'), 450)
       resetForm()
-      navigate('/')
     },
-    [dispatch],
+    [dispatch, navigate],
   )
 
   const formik = useFormik({

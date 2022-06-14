@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import { sagaActions } from '../../store/saga-actions'
 import { uiActions } from '../../store/ui-slice'
 import { useAppDispatch } from '../../hooks/redux.hook'
+import { useNavigate } from 'react-router-dom'
 
 const sagaButtons = [
   { id: 5, text: 'Change Password', icon: 'LockOpen' },
@@ -26,6 +27,7 @@ const scrollWithOffset = el => {
 const SideBarItem: React.FC = () => {
   const classes = useSideBarStyles()
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const [list_item, setState] = useState({
     activeButton: {},
@@ -73,10 +75,11 @@ const SideBarItem: React.FC = () => {
           break
         case '6':
           dispatch({ type: sagaActions.USER_LOGOUT_SAGA })
+          setTimeout(() => navigate('/'), 2000)
           break
       }
     },
-    [dispatch],
+    [dispatch, navigate],
   )
 
   const toggleButton = useCallback(
