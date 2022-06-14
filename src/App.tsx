@@ -46,7 +46,7 @@ const App: React.FC = () => {
       ) : (
         <Routes>
           <Route path="/signin" element={<SignInPage />} />
-          <Route path="/" element={<Navigate to="/signin" replace />} />
+          <Route path="*" element={<Navigate to="/signin" replace />} />
         </Routes>
       )}
       <LicenseModals />
