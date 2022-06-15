@@ -19,6 +19,7 @@ const AuthRoutes = () => {
         <Route path="/" element={<Navigate to="/users" replace />} />
         <Route path="/licenses" element={<LicensesPage />} />
         <Route path="/users" element={<UsersPage />} />
+        <Route path="/signin" element={<Navigate to="/users" replace />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
