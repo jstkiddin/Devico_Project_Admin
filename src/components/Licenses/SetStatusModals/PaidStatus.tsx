@@ -3,7 +3,7 @@ import { Box, FormControl, Grid, MenuItem } from '@mui/material'
 import clsx from 'clsx'
 import { memo, useCallback, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux.hook'
-import { licenseActions } from '../../../store/saga-actions'
+import { licenseActions, notificationsActions } from '../../../store/saga-actions'
 import { uiActions } from '../../../store/ui-slice'
 import { ILicenses } from '../../../types/globalTypes'
 import { OutlinedRegButton, RegisterButton } from '../../Auth/AuthStyles'
@@ -29,6 +29,21 @@ const PaidStatus: React.FC = () => {
 
   const handleSubmit = useCallback(() => {
     dispatch({ type: licenseActions.LICENSE_CHAGE_PAID_STATUS, payload: { licenseId, status } })
+    const color = () => {
+      if (status === 'Paid') {
+        return { backgroundColor: 'rgba(80, 158, 47, 0.2)', height: 50 }
+      }
+      return { backgroundColor: 'rgba(238, 2, 2, 0.2)', height: 50 }
+    }
+
+    dispatch({
+      type: notificationsActions.ADD_NOTIFICATION,
+      payload: {
+        text: `Your license's paid status was changed to "${status}"`,
+        color,
+        user_id: license[0].user_id,
+      },
+    })
   }, [dispatch, licenseId, status])
 
   const handleCancel = useCallback(() => {

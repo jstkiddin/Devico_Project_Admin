@@ -4,11 +4,13 @@ import { ILicenses } from '../types/globalTypes'
 interface SliceState {
   licenses: ILicenses[]
   licenseId: string
+  count: number
 }
 
 const initialState: SliceState = {
   licenses: [],
   licenseId: '',
+  count: 0,
 }
 
 const licenseSlice = createSlice({
@@ -20,6 +22,9 @@ const licenseSlice = createSlice({
     },
     setLicenseId(state, action) {
       state.licenseId = action.payload
+    },
+    setLicensesCount(state, action) {
+      state.count = action.payload.count
     },
   },
 })

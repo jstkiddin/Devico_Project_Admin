@@ -23,3 +23,7 @@ export const licenseActions = {
   LICENSE_CHAGE_PAID_STATUS: 'LICENSE_CHAGE_PAID_STATUS',
   CHAGE_LICENSE_STATUS: 'CHAGE_LICENSE_STATUS',
 }
+
+export const notificationsActions = {
+  ADD_NOTIFICATION: 'ADD_NOTIFICATION',
+}

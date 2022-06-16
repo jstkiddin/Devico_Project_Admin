@@ -7,6 +7,7 @@ import eventSlice from './event-slice'
 import eventSaga from './eventSaga'
 import licenseSaga from './licenseSaga'
 import licenseSlice from './license-slice'
+import notificationsSaga from './notificationsSaga'
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
@@ -14,6 +15,7 @@ export type AppDispatch = typeof store.dispatch
 let sagaMiddleware = createSagaMiddleware()
 let eventSagaMiddleware = createSagaMiddleware()
 let licenseSagaMiddleware = createSagaMiddleware()
+let notificationsSagaMiddleware = createSagaMiddleware()
 
 const store = configureStore({
   reducer: {
@@ -27,6 +29,7 @@ const store = configureStore({
       sagaMiddleware,
       eventSagaMiddleware,
       licenseSagaMiddleware,
+      notificationsSagaMiddleware,
     ),
   devTools: true,
 })
@@ -34,5 +37,6 @@ const store = configureStore({
 sagaMiddleware.run(saga)
 eventSagaMiddleware.run(eventSaga)
 licenseSagaMiddleware.run(licenseSaga)
+notificationsSagaMiddleware.run(notificationsSaga)
 
 export default store

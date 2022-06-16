@@ -83,9 +83,9 @@ export interface LicenseCells {
 
 export interface ILicenses {
   id: string
-  fullNameUK: string
-  fullNameLat: string
-  birthday: string
+  fullNameUkrainian: string
+  fullNameLatin: string
+  dob: string
   nativeCity: string
   address: string
   identificationNum: string

@@ -4,14 +4,16 @@ import api from '../hooks'
 import { licenseSliceActions } from './license-slice'
 import { uiActions } from './ui-slice'
 
-const { setLicenses } = licenseSliceActions
+const { setLicenses, setLicensesCount } = licenseSliceActions
 const { toggleShowSetPaidStatus, toggleShowSetLicenseStatus } = uiActions
 
 export function* getLicensesList(action: Effect) {
   try {
-    const data = yield call(api.get, '/getLicenses')
-    const { licenses } = data.data
+    const { limit, offset } = action.payload
+    const data = yield call(api.put, '/getLicenses', { limit, offset })
+    const { licenses, count } = data.data
     yield put(setLicenses({ licenses }))
+    yield put(setLicensesCount({ count }))
   } catch (error) {
     console.log(error)
   }
